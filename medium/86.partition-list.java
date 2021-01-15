@@ -16,7 +16,6 @@ public ListNode partition(ListNode head, int x) {
         head = head.next;
     }
 
-
     curBefore.next = after.next;
     curAfter.next = null;
 
