@@ -1,40 +1,19 @@
 public boolean backspaceCompare(String s, String t) {
-    int i = s.length()-1;
-    int bS = 0;
+    int bS=0, bT=0;
+    int iS=s.length()-1, iT=t.length()-1;
 
-    int j = t.length()-1;
-    int bT = 0;
-
-    while (i >= 0 || j >= 0) {
-        while (i >= 0) {
-            if (s.charAt(i) == '#') {
-                bS++;
-                i--;
-            } else if (bS > 0) {
-                bS--;
-                i--;
-            } else {
-                break;
-            }
-        }
-
-        while (j >= 0) {
-            if (t.charAt(j) == '#') {
-                bT++;
-                j--;
-            } else if (bT > 0) {
-                bT--;
-                j--;
-            } else {
-                break;
-            }
-        }
-
-        if (i == -1 && j == -1) {
-            return true;
-        } else if ((i == -1) != (j == -1)) {
-            return false;
-        } else if (s.charAt(i--) != t.charAt(j--)) {
+    while (iS >= 0 || iT >= 0) {
+        if (iS >= 0 && s.charAt(iS) == '#') {
+            bS++; iS--;
+        } else if (iS >= 0 && bS > 0) {
+            bS--; iS--;
+        } else if (iT >= 0 && t.charAt(iT) == '#') {
+            bT++; iT--;
+        } else if (iT >= 0 && bT > 0) {
+            bT--; iT--;
+        } else if (iS >= 0 && iT >= 0 && s.charAt(iS) == t.charAt(iT)) {
+            iS--; iT--;
+        } else {
             return false;
         }
     }

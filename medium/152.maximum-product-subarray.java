@@ -1,21 +1,16 @@
 public int maxProduct(int[] nums) {
-    if (nums.length == 0) {
-        return 0;
-    }
-
-    int max = nums[0];
-    int min = nums[0];
-    int output = max;
+    int max=nums[0];
+    int minProduct=max, maxProduct=max;
 
     for (int i=1; i<nums.length; i++) {
-        int currMax = Math.max(min*nums[i], max*nums[i]);
-        int currMin = Math.min(min*nums[i], max*nums[i]);
+        int curMinProduct = Math.min(minProduct * nums[i], maxProduct * nums[i]);
+        int curMaxProduct = Math.max(minProduct * nums[i], maxProduct * nums[i]);
 
-        min = Math.min(currMin, nums[i]);
-        max = Math.max(currMax, nums[i]);
+        minProduct = Math.min(curMinProduct, nums[i]);
+        maxProduct = Math.max(curMaxProduct, nums[i]);
 
-        output = Math.max(max, output);
+        max = Math.max(max, maxProduct);
     }
-    
-    return output;
+
+    return max;
 }
